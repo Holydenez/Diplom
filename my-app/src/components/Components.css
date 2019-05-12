@@ -1,0 +1,95 @@
+.NavigationBar {
+    position: fixed;
+    left:0;
+    height: 100vh;  
+    width: 10vw ;
+    z-index: 1000;
+    background-color: transparent
+}
+.NavigationBar-innerblock {
+    height: 100%;
+    transition: all 0.5s ease;
+    overflow:hidden;
+    background-color: whitesmoke
+}
+.NavigationBar-innerblock .Button {
+    height: 10vh;
+    align-items: center;
+    justify-content: center;
+    padding: 5px
+}
+.Main-block {
+    height: 100vh;
+    width: 100vw ;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: black
+}
+.Navigation-block {
+    z-index: 100;
+    flex: 1;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+.Navigation-background{
+    filter: blur(5px);
+    transition: all 0.5s ease;
+}
+.Navigation-background:hover
+{
+     transform: scale(1.2);
+     filter: blur(8px);
+}
+.Navigation-block-inner {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 50%;
+    height: 30%;
+    margin: auto;
+}
+.Practice-inner {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: auto;
+    color: white;
+}
+.Practice-navigation{
+    height: 70vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    background-color: black;
+    z-index: 100;
+}
+.Practice-programm{
+    height: 70vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 100;
+}
+.Practice-header {
+    height: 30vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+}
