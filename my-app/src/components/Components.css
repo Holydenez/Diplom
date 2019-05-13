@@ -13,9 +13,10 @@
     background-color: whitesmoke
 }
 .NavigationBar-innerblock .Button {
-    height: 10vh;
+    border-bottom: 2px solid grey;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     padding: 5px
 }
 .Main-block {
@@ -41,7 +42,7 @@
     filter: blur(5px);
     transition: all 0.5s ease;
 }
-.Navigation-background:hover
+.Navigation-block:hover .Navigation-background
 {
      transform: scale(1.2);
      filter: blur(8px);

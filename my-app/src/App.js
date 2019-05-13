@@ -4,7 +4,7 @@ import books from './assets/images/books.jpg';
 import code from './assets/images/code.jpg';
 import './App.css';
 //components
-import NavigationBar from "./components/NavigationBar"
+import NavigationBar from  "./components/NavigationBar"
 import TheoryBlock from "./components/TheoryBlock"
 import PracticeBlock from "./components/PracticeBlock"
 import NavigationBlock from "./components/NavigationBlock"

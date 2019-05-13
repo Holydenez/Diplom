@@ -1,0 +1,24 @@
+.TheoryContent {
+    position: fixed;
+    right:0;
+    height: 50vh;  
+    width: 20vw ;
+    z-index: 1000;
+    justify-content: flex-end;
+    background-color: transparent
+}
+.TheoryContent-innerblock {
+    position: absolute;
+    right:0;
+    height: 100%;
+    transition: all 0.5s ease;
+    overflow:hidden;
+    background-color: whitesmoke
+}
+.TheoryContent-innerblock .Button {
+    border-bottom: 2px solid grey;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding: 5px
+}

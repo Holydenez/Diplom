@@ -1,12 +1,12 @@
 import React from 'react';
 import MaterialIcon, { colorPalette } from 'material-icons-react';
-import './Components.css';
+import './TheoryComponents.css';
 
 
 
-export default class NavigationBar extends React.Component {
+export default class TheoryContent extends React.Component {
     state = {
-        navbarWidth: 10
+        navbarWidth: 20
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll)
@@ -23,7 +23,7 @@ export default class NavigationBar extends React.Component {
         }
     }
     expandNavbar = () => {
-        this.setState({ navbarWidth: 10 })
+        this.setState({ navbarWidth: 20 })
     }
     hideNavbar = () => {
         this.setState({ navbarWidth: 0 })
@@ -34,19 +34,17 @@ export default class NavigationBar extends React.Component {
         }
         return (
             <div
-                onMouseOver={this.expandNavbar} onMouseOut={this.hideNavbar} className="NavigationBar">
-                <div style={style} className="NavigationBar-innerblock">
+                onMouseOver={this.expandNavbar} onMouseOut={this.hideNavbar} className="TheoryContent">
+                <div style={style} className="TheoryContent-innerblock">
+                    <h4>Оглавление</h4>
                     <div className="Button" onClick={() => this.props.navigateTo()}>
                         <p>Home</p>
-                        <MaterialIcon icon="home" size={40} />
                     </div>
                     <div className="Button" onClick={() => this.props.navigateTo("theory")}>
                         <p>Theory</p>
-                        <MaterialIcon icon="description" size={40} />
                     </div>
                     <div className="Button" onClick={() => this.props.navigateTo("practice")}>
                         <p>Practice</p>
-                        <MaterialIcon icon="code" size={40} />
                     </div>
                 </div>
             </div>
