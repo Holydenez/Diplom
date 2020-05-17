@@ -1,5 +1,6 @@
 import React from 'react';
 import MaterialIcon from 'material-icons-react';
+import Pdf from '../assets/doc.pdf';
 import './Components.css';
 
 
@@ -40,7 +41,7 @@ export default class NavigationBar extends React.Component {
                         <p>Головна</p>
                         <MaterialIcon icon="home" size={40} />
                     </div>
-                    <div className="Button" onClick={() => this.props.navigateTo("theory")}>
+                    <div className="Button"  onClick={() => window.open(Pdf)}>
                         <p>Теорія</p>
                         <MaterialIcon icon="description" size={40} />
                     </div>
