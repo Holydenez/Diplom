@@ -11,7 +11,7 @@ import PlateLinear from './practice-components/PlateLinear';
 import PlateNotLinear from './practice-components/PlateNotLinear'
 import CylinderLinear from './practice-components/CylinderLinear'
 import CylinderNotLinear_v1 from './practice-components/CylinderNotLinear_v1'
-
+import CylinderNotLinear_v2 from './practice-components/CylinderNotLinear_v2'
 
 export default class PracticeBlock extends React.Component {
     state = {
@@ -83,10 +83,13 @@ export default class PracticeBlock extends React.Component {
                                     <div className="Practice-programm">
                                         <CylinderLinear navigateTo={this.navigatePracticeTo} />
                                     </div>
-                                    :
-                                    <div className="Practice-programm">
-                                        <CylinderNotLinear_v1 navigateTo={this.navigatePracticeTo} />
-                                    </div>
+                                    : this.state.navigationPracticeRoute === "cylinder_v2" ?
+                                        <div className="Practice-programm">
+                                            <CylinderNotLinear_v1 navigateTo={this.navigatePracticeTo} />
+                                        </div>
+                                        : <div className="Practice-programm">
+                                            <CylinderNotLinear_v2 navigateTo={this.navigatePracticeTo} />
+                                        </div>
                     }
                 </div>
             </div>

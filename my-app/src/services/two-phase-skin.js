@@ -1,3 +1,5 @@
+import { integrate } from "./integration"
+
 export function calculatePlateNewtonLiquid(g, δ1, δ2, p1, p2, υ1, υ2, μ1, μ2, Ge) {
     const yLength = δ1 + δ2
     υ1 = υ1 / Math.pow(10, 6)
@@ -15,7 +17,7 @@ export function calculatePlateNewtonLiquid(g, δ1, δ2, p1, p2, υ1, υ2, μ1, �
     for (let y = 0; y < Number(yLength) + 1; y = y + 0.1) {
         W1 = (g / υ1) * (-(Math.pow(y, 2) / 2) + (δ1 + ((p2 * δ2 / p1) * (1 - Ge))) * y).toFixed(2)
         W2 = ((g / υ2) * (-(Math.pow(y, 2) / 2) + (δ1 + δ2 * (1 - Ge) * y + (δ1 * δ1 / 2) * ((υ2 / υ1) - 1) + δ1 * δ2 * ((μ2 / μ1) - 1) * (1 - Ge)))).toFixed(2)
-        speedArray.push({ y, W1: parseFloat(0.995*W1) / Math.pow(10, 6), W2: parseFloat(0.998*W2) / Math.pow(10, 6) })
+        speedArray.push({ y, W1: parseFloat(0.995 * W1) / Math.pow(10, 6), W2: parseFloat(0.998 * W2) / Math.pow(10, 6) })
     }
     //оптімальна дія на робочу плівку
     let q = (δ1 * μ2) / (δ2 * μ1)
@@ -104,4 +106,42 @@ export function calculateCylinderNotLinearLiquid(inner_skin, rLength, δ1, δ2, 
     }
     return calculatedInfo
 }
+
+export function calculateCylinderNotLinearLiquid_V2(r1, r2, n1, n2, p1, p2, Re1, Re2, Fr, Ge) {
+    let r0 = 0.01;
+    const speedArray = [];
+    // r2 - радиус второго слоя, r1 - радиус первого слоя
+    for (let r = r0; r < (r1 + r2); r++) {
+        // стандартные константы
+        const R = r / r0;
+        const R1 = r1 / r0;
+        const R2 = r2 / r0;
+        const δ2 = (r2 - r1) / r0
+        // вспомогательные константы
+        const n1_coef = 1 / n1;
+        const n2_coef = 1 / n2;
+        const R1_in_2 = Math.pow(R1, 2);
+        const R2_in_2 = Math.pow(R2, 2);
+        const R_special_in_2 = R2_in_2 + 2 * Ge * δ2 * R2;
+        const Re1_Fr = Re1 / Fr;
+        const Re2_Fr = Re2 / Fr;
+        //разбиение формул на подформулы
+        const B1 = R1_in_2 + (p2 / p1) * (-R1_in_2 + R_special_in_2);
+        const A1 = Math.pow((0.5 * Re1_Fr), n1_coef);
+        const B2 = R_special_in_2;
+        const A2 = Math.pow((0.5 * Re2_Fr), n2_coef);
+
+        function U1_under_integrate(R_tick) {
+            return Math.pow((-R_tick + (B1 / R)), n1_coef)
+        }
+        function U2_under_integrate(R_tick) {
+            return Math.pow((-R + (B2 / R)), n2_coef)
+        }
+        const U1 = A1 * integrate(U1_under_integrate, 1, R);
+        const U2 = A2 * integrate(U2_under_integrate, R1, R) + U1;
+
+        speedArray.push({ y: r, W1: parseFloat(U1), W2: parseFloat(U2) })
+    }
+}
+
 
