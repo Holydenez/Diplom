@@ -1,14 +1,69 @@
-.Main{
+.Main {
     width: 100vw;
     height: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
     position: relative;
+    padding-left: 10vw;
+    padding-right: 5vw;
 }
-.Back-button{
+
+.Back-button {
     position: absolute;
-    right:0;
-    top:0;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    top: 0;
+}
+
+.Form-and-chart-container {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.Input-form {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.Input {
+    flex: 1
+}
+
+.Input-label {
+    flex-direction: column;
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.Submit-button {
+    border: 1px solid white;
+    padding: 5px;
+}
+
+.Input-form-container {
+    display: flex;
+    flex: 1;
+}
+
+.Chart-container {
+    display: flex;
+    flex: 1;
+}
+
+.Results-container {
+    float: 1;
+    display: flex;
+}
+
+.Result-line {
+    flex: 1;
+    justify-content: flex-end;
 }

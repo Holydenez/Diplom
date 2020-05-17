@@ -1,17 +1,19 @@
 .NavigationBar {
     position: fixed;
-    left:0;
-    height: 100vh;  
-    width: 10vw ;
+    left: 0;
+    height: 100vh;
+    width: 10vw;
     z-index: 1000;
     background-color: transparent
 }
+
 .NavigationBar-innerblock {
     height: 100%;
     transition: all 0.5s ease;
-    overflow:hidden;
+    overflow: hidden;
     background-color: whitesmoke
 }
+
 .NavigationBar-innerblock .Button {
     border-bottom: 2px solid grey;
     align-items: center;
@@ -19,15 +21,17 @@
     flex-direction: column;
     padding: 5px
 }
+
 .Main-block {
     height: 100vh;
-    width: 100vw ;
+    width: 100vw;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     background-color: black
 }
+
 .Navigation-block {
     z-index: 100;
     flex: 1;
@@ -38,15 +42,17 @@
     position: relative;
     overflow: hidden;
 }
-.Navigation-background{
+
+.Navigation-background {
     filter: blur(5px);
     transition: all 0.5s ease;
 }
-.Navigation-block:hover .Navigation-background
-{
-     transform: scale(1.2);
-     filter: blur(8px);
+
+.Navigation-block:hover .Navigation-background {
+    transform: scale(1.2);
+    filter: blur(8px);
 }
+
 .Navigation-block-inner {
     position: absolute;
     top: 0;
@@ -57,6 +63,7 @@
     height: 30%;
     margin: auto;
 }
+
 .Practice-inner {
     position: absolute;
     top: 0;
@@ -67,7 +74,8 @@
     margin: auto;
     color: white;
 }
-.Practice-navigation{
+
+.Practice-navigation {
     height: 70vh;
     width: 100vw;
     display: flex;
@@ -78,8 +86,9 @@
     background-color: black;
     z-index: 100;
 }
-.Practice-programm{
-    height: 70vh;
+
+.Practice-programm {
+    height: 90%;
     width: 100vw;
     display: flex;
     flex-direction: row;
@@ -88,9 +97,17 @@
     position: relative;
     z-index: 100;
 }
+
 .Practice-header {
-    height: 30vh;
     width: 100vw;
     align-items: center;
+    justify-content: center;
+}
+
+.Practice-header-inner {
+    padding-top: 1vh;
+    height: 20vh;
+    width: 100vw;
+    align-items: flex-start;
     justify-content: center;
 }

@@ -20,6 +20,12 @@
     z-index: 200;
 }
 
+.App-header div {
+    flex: 0.5;
+    align-self: flex-end;
+    text-align: start
+}
+
 .App-navigation {
     height: 100vh;
     background-color: black;
@@ -40,6 +46,7 @@
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }

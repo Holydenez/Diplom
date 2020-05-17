@@ -36,15 +36,15 @@ export default class TheoryContent extends React.Component {
             <div
                 onMouseOver={this.expandNavbar} onMouseOut={this.hideNavbar} className="TheoryContent">
                 <div style={style} className="TheoryContent-innerblock">
-                    <h4>Оглавление</h4>
+                    <h4>ЗМІСТ</h4>
                     <div className="Button" onClick={() => this.props.navigateTo()}>
-                        <p>Home</p>
+                        <p>ПЛІВКОВІ ТЕЧІЇ І АКТУАЛЬНІСТЬ ЇХ ДОСЛІДЖЕННЯ</p>
                     </div>
                     <div className="Button" onClick={() => this.props.navigateTo("theory")}>
-                        <p>Theory</p>
+                        <p>МОДЕЛЮВАННЯ ТЕЧІЇ ДВОШАРОВОЇ РІДКОЇ ПЛІВКИ ПО ПОВЕРХНІ ПЛАСТИНИ</p>
                     </div>
                     <div className="Button" onClick={() => this.props.navigateTo("practice")}>
-                        <p>Practice</p>
+                        <p>ЗАДАЧА ПРО ТЕЧІЮ ДВОШАРОВОЇ РІДКОЇ ПЛІВКИ ПО ПОВЕРХНІ ЦИЛІНДРА</p>
                     </div>
                 </div>
             </div>
