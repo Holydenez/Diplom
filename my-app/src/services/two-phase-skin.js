@@ -1,4 +1,4 @@
-export function calculateTwoPhaseSkin(g, δ1, δ2, p1, p2, υ1, υ2, μ1, μ2, Ge) {
+export function calculatePlateNewtonLiquid(g, δ1, δ2, p1, p2, υ1, υ2, μ1, μ2, Ge) {
     const yLength = δ1 + δ2
     υ1 = υ1 / Math.pow(10, 6)
     υ2 = υ2 / Math.pow(10, 6)
@@ -32,7 +32,7 @@ export function calculateTwoPhaseSkin(g, δ1, δ2, p1, p2, υ1, υ2, μ1, μ2, G
     }
     return calculatedInfo
 }
-export function calculateTwoPhaseSkinHard(δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge) {
+export function calculatePlateNotLinearLiquid(δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge) {
     const yLength = δ1 + δ2
     let W1, W2, W_1, W_2, W_3, W_4, W_5, ReFr1, ReFr2;
     ReFr1 = Math.pow((Re1 / Fr), (1 / n1))
@@ -53,7 +53,7 @@ export function calculateTwoPhaseSkinHard(δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1
     }
     return calculatedInfo
 }
-export function calculateSimpleCylinder(inner_skin, rLength, δ1, δ2, p1, p2, Re1, Re2, Fr, Ge) {
+export function calculateCylinderNewtoneLiquid(inner_skin, rLength, δ1, δ2, p1, p2, Re1, Re2, Fr, Ge) {
     //y - радіус, r0 - стартова точка відліку
     let r0 = 0.9999, speedArray = [], R_spec, R1, R2, R, W1, W2, W_1, lnR, lnR1, ReFr1, ReFr2, R_spec2lnRR1
     for (let y = 0; y < Number(rLength) + 1; y = y + 0.1) {
@@ -78,7 +78,7 @@ export function calculateSimpleCylinder(inner_skin, rLength, δ1, δ2, p1, p2, R
     return calculatedInfo
 }
 
-export function calculateHardCylinderSECOND(inner_skin, rLength, δ1, δ2, p1, p2, Re1, Re2, Fr, Ge) {
+export function calculateCylinderNotLinearLiquid(inner_skin, rLength, δ1, δ2, p1, p2, Re1, Re2, Fr, Ge) {
     //n=1/3
     //y - радіус, r0 - стартова точка відліку
     let r0 = 0.9999, speedArray = [], W1, W2, c_1, c_2, c_3, c_4, R, result1, result2;
@@ -104,3 +104,4 @@ export function calculateHardCylinderSECOND(inner_skin, rLength, δ1, δ2, p1, p
     }
     return calculatedInfo
 }
+

@@ -2,7 +2,7 @@ import React from 'react';
 import './PracticeProgramm.css';
 import Chart from "chart.js"
 import MaterialIcon from 'material-icons-react';
-import { calculateSimpleCylinder } from "../../services/two-phase-skin"
+import { calculateCylinderNewtoneLiquid } from "../../services/two-phase-skin"
 
 export default class PracticeProgramm extends React.Component {
     state = {
@@ -33,7 +33,7 @@ export default class PracticeProgramm extends React.Component {
     }
     calculateChart = () => {
         const { inner_skin, rLength, δ1, δ2, p1, p2, Re1, Re2, Fr, Ge } = this.state
-        const calculateInfo = calculateSimpleCylinder(inner_skin, rLength, δ1, δ2, p1, p2, Re1, Re2, Fr, Ge)
+        const calculateInfo = calculateCylinderNewtoneLiquid(inner_skin, rLength, δ1, δ2, p1, p2, Re1, Re2, Fr, Ge)
         console.log(calculateInfo.speedArray)
         this.setState({
             maxSpeed: calculateInfo.Wmax,
