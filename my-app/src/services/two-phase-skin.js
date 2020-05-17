@@ -111,7 +111,7 @@ export function calculateCylinderNotLinearLiquid_V2(r1, r2, n1, n2, p1, p2, Re1,
     let r0 = 0.01;
     const speedArray = [];
     // r2 - радиус второго слоя, r1 - радиус первого слоя
-    for (let r = r0; r < (r1 + r2); r++) {
+    for (let r = r0; r < (r1 + r2); r = r + 0.1) {
         // стандартные константы
         const R = r / r0;
         const R1 = r1 / r0;
@@ -132,16 +132,16 @@ export function calculateCylinderNotLinearLiquid_V2(r1, r2, n1, n2, p1, p2, Re1,
         const A2 = Math.pow((0.5 * Re2_Fr), n2_coef);
 
         function U1_under_integrate(R_tick) {
-            return Math.pow((-R_tick + (B1 / R)), n1_coef)
+            return Math.pow((-R_tick + (B1 / R_tick)), n1_coef)
         }
         function U2_under_integrate(R_tick) {
-            return Math.pow((-R + (B2 / R)), n2_coef)
+            return Math.pow((-R_tick + (B2 / R_tick)), n2_coef)
         }
         const U1 = A1 * integrate(U1_under_integrate, 1, R);
         const U2 = A2 * integrate(U2_under_integrate, R1, R) + U1;
-
         speedArray.push({ y: r, W1: parseFloat(U1), W2: parseFloat(U2) })
     }
+    return { speedArray };
 }
 
 

@@ -20,6 +20,11 @@ export default class PlateLinear extends React.Component {
     componentDidMount = () => {
         this.calculateChart()
     }
+    handleChange = (event) => {
+        if (event.target.value.length > 0) {
+            this.setState({ [event.target.name]: parseFloat(event.target.value) })
+        }
+    }
     clearInput = (event) => {
         //this.setState({ [event.target.name]: 0 })
     }
