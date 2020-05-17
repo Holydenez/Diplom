@@ -6,7 +6,6 @@ import Pdf from './assets/doc.pdf';
 import './App.css';
 //components
 import NavigationBar from "./components/NavigationBar"
-import TheoryBlock from "./components/TheoryBlock"
 import PracticeBlock from "./components/PracticeBlock"
 import NavigationBlock from "./components/NavigationBlock"
 
@@ -25,7 +24,6 @@ export default class App extends React.Component {
           this.state.navigationRoute === "home" ?
             <div>
               <header className="App-header">
-                {/* <img src={logo} className="App-logo" alt="logo" /> */}
                 <h6>
                   ДНІПРОВСЬКИЙ НАЦІОНАЛЬНИЙ УНІВЕРСИТЕТ
                    ІМЕНІ ОЛЕСЯ ГОНЧАРА
