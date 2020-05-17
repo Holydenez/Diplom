@@ -1,10 +1,10 @@
 import React from 'react';
-import './PracticeProgramm.css';
+import './PlateLinear.css';
 import Chart from "chart.js"
 import MaterialIcon from 'material-icons-react';
 import { calculatePlateNewtonLiquid } from "../../services/two-phase-skin"
 
-export default class PracticeProgramm extends React.Component {
+export default class PlateLinear extends React.Component {
     state = {
         g: 9.8,
         δ1: 1,

@@ -1,11 +1,13 @@
 import React from 'react';
-import './PracticeProgramm.css';
+import './PlateLinear.css';
 import Chart from "chart.js"
 import MaterialIcon from 'material-icons-react';
-import { calculatePlateNotLinearLiquid } from "../../services/two-phase-skin"
+import { calculateCylinderNewtoneLiquid } from "../../services/two-phase-skin"
 
-export default class PracticeProgramm extends React.Component {
+export default class PlateLinear extends React.Component {
     state = {
+        inner_skin: false,
+        rLength: 1,
         δ1: 1,
         δ2: 1,
         p1: 997,
@@ -13,24 +15,25 @@ export default class PracticeProgramm extends React.Component {
         Re1: 1.2,
         Re2: 1.4,
         Fr: 1,
-        n2: 1,
-        n1: 1,
         Ge: 0
     }
     componentDidMount = () => {
         this.calculateChart()
     }
     handleChange = (event) => {
-        if (event.target.value.length > 0) {
+        if (event.target.name == "inner_skin") {
+            this.setState({ inner_skin: !this.state.inner_skin })
+        } else if (event.target.value.length > 0) {
             this.setState({ [event.target.name]: parseFloat(event.target.value) })
+
         }
     }
     clearInput = (event) => {
         //this.setState({ [event.target.name]: 0 })
     }
     calculateChart = () => {
-        const { δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge } = this.state
-        const calculateInfo = calculatePlateNotLinearLiquid(δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge)
+        const { inner_skin, rLength, δ1, δ2, p1, p2, Re1, Re2, Fr, Ge } = this.state
+        const calculateInfo = calculateCylinderNewtoneLiquid(inner_skin, rLength, δ1, δ2, p1, p2, Re1, Re2, Fr, Ge)
         console.log(calculateInfo.speedArray)
         this.setState({
             maxSpeed: calculateInfo.Wmax,
@@ -39,11 +42,21 @@ export default class PracticeProgramm extends React.Component {
         })
         let wArray = [], indexArray = []
         calculateInfo.speedArray.forEach(speedElement => {
-            if (speedElement.y.toFixed(1) <= δ1) {
-                wArray.push(speedElement.W1)
+            if (!inner_skin) {
+                if (speedElement.y.toFixed(1) <= δ1) {
+                    wArray.push(speedElement.W1)
+                }
+                else if (speedElement.y.toFixed(1) > δ1) {
+                    wArray.push(speedElement.W2)
+                }
             }
-            else if (speedElement.y.toFixed(1) > δ1) {
-                wArray.push(speedElement.W2)
+            else {
+                if (speedElement.y.toFixed(1) <= δ1) {
+                    wArray.push(speedElement.W2)
+                }
+                else if (speedElement.y.toFixed(1) > δ1) {
+                    wArray.push(speedElement.W1)
+                }
             }
             indexArray.push(speedElement.y.toFixed(1))
         });
@@ -89,6 +102,20 @@ export default class PracticeProgramm extends React.Component {
             },
             {
 
+                label: "inner_skin (плівка стікає по внутрішній частині циліндра):",
+                name: "inner_skin",
+                type: "checkbox",
+                value: this.state.inner_skin
+            },
+            {
+
+                label: "rLength (радіус циліндра):",
+                name: "rLength",
+                type: "number",
+                value: this.state.rLength
+            },
+            {
+
                 label: "p1 (густина рідини першої плівки):",
                 name: "p1",
                 type: "number",
@@ -121,20 +148,6 @@ export default class PracticeProgramm extends React.Component {
                 name: "Fr",
                 type: "number",
                 value: this.state.Fr
-            },
-            {
-
-                label: "n1 (фізична константа для нелінійно-в’язких плівок):",
-                name: "n1",
-                type: "number",
-                value: this.state.n1
-            },
-            {
-
-                label: "n2 (фізична константа для нелінійно-в’язких плівок):",
-                name: "n2",
-                type: "number",
-                value: this.state.n2
             },
             {
 

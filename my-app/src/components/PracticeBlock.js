@@ -7,10 +7,10 @@ import cylinder from '../assets/images/cylinder.jpg'
 import many_cylinders from '../assets/images/many-cylinders.jpg'
 //components
 import NavigationBlock from "./NavigationBlock"
-import PracticeProgramm from './practice-components/PracticeProgramm';
-import PracticeProgrammSecond from './practice-components/PracticeProgrammSecond'
-import PracticeProgrammCylinder from './practice-components/PracticeProgrammCylinder'
-import PracticeProgrammCylinderHard from './practice-components/PracticeProgrammCylinderHard'
+import PlateLinear from './practice-components/PlateLinear';
+import PlateNotLinear from './practice-components/PlateNotLinear'
+import CylinderLinear from './practice-components/CylinderLinear'
+import CylinderNotLinear_v1 from './practice-components/CylinderNotLinear_v1'
 
 
 export default class PracticeBlock extends React.Component {
@@ -37,7 +37,7 @@ export default class PracticeBlock extends React.Component {
                         <h2>Практична частина</h2>
                         {this.state.navigationPracticeRoute === "home" &&
                             <div className="Practice-header-inner">
-                                У цій частині користувач може самостійно випробувати прикладну частину проекту, а саме переглянути рішення задач для запропонованих параметрів або поекспериментувати з власними параметрами. Також він може переглянути графіки залежностей для отриманих рішень
+                                У цій частині користувач може переглянути графіки швидкості двошарової плівки в залежності від вхідних параметрів. Користувач може експерементувати, самостіно задаваючи параметри, або використати стандартні, запропоновані значення.
                             </div>
                         }
                     </div>
@@ -47,40 +47,45 @@ export default class PracticeBlock extends React.Component {
                                 navigateTo={this.navigatePracticeTo}
                                 image={sheet}
                                 navigateRoute="sheet"
-                                title={("Задача про течію двох плівок по поверхні пластини").toUpperCase()} />
+                                title={("Течія двошарової плівки лінійної рідини по поверхні пластини").toUpperCase()} />
                             <NavigationBlock
                                 navigateTo={this.navigatePracticeTo}
                                 image={steelplate}
                                 navigateRoute="sheet_v2"
-                                title={("Задача про течію двошарової плівки нелінійно-в’язкої рідини по поверхні пластини").toUpperCase()} />
+                                title={("Течія двошарової плівки нелінійно-в’язкої рідини по поверхні пластини").toUpperCase()} />
                             <NavigationBlock
                                 navigateTo={this.navigatePracticeTo}
                                 image={cylinder}
                                 navigateRoute="cylinder"
-                                title={("ЗАДАЧА ПРО ТЕЧІЮ ДВОШАРОВОЇ РІДКОЇ ПЛІВКИ ПО ПОВЕРХНІ ЦИЛІНДРА").toUpperCase()} />
+                                title={("Течія двошарової плівки лінійної рідини по поверхні циліндра").toUpperCase()} />
                             <NavigationBlock
                                 navigateTo={this.navigatePracticeTo}
                                 image={many_cylinders}
                                 navigateRoute="cylinder_v2"
-                                title={("ЗАДАЧА ПРО ТЕЧІЮ ДВОШАРОВОЇ ПЛІВКИ нелінійно-в’язкої рідини ПО ПОВЕРХНІ ЦИЛІНДРА").toUpperCase()} />
+                                title={("Течія двошарової плівки нелінійно-в’язкої рідини по поверхні циліндра (перший спосіб розв'язку)").toUpperCase()} />
+                            <NavigationBlock
+                                navigateTo={this.navigatePracticeTo}
+                                image={many_cylinders}
+                                navigateRoute="cylinder_v3"
+                                title={("Течія двошарової плівки нелінійно-в’язкої рідини по поверхні циліндра (другий спосіб розв'язку)").toUpperCase()} />
                         </div>
                         :
                         this.state.navigationPracticeRoute === "sheet" ?
                             <div className="Practice-programm">
-                                <PracticeProgramm navigateTo={this.navigatePracticeTo} />
+                                <PlateLinear navigateTo={this.navigatePracticeTo} />
                             </div>
                             :
                             this.state.navigationPracticeRoute === "sheet_v2" ?
                                 <div className="Practice-programm">
-                                    <PracticeProgrammSecond navigateTo={this.navigatePracticeTo} />
+                                    <PlateNotLinear navigateTo={this.navigatePracticeTo} />
                                 </div>
                                 : this.state.navigationPracticeRoute === "cylinder" ?
                                     <div className="Practice-programm">
-                                        <PracticeProgrammCylinder navigateTo={this.navigatePracticeTo} />
+                                        <CylinderLinear navigateTo={this.navigatePracticeTo} />
                                     </div>
                                     :
                                     <div className="Practice-programm">
-                                        <PracticeProgrammCylinderHard navigateTo={this.navigatePracticeTo} />
+                                        <CylinderNotLinear_v1 navigateTo={this.navigatePracticeTo} />
                                     </div>
                     }
                 </div>

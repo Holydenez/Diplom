@@ -1,19 +1,19 @@
 import React from 'react';
-import './PracticeProgramm.css';
+import './PlateLinear.css';
 import Chart from "chart.js"
 import MaterialIcon from 'material-icons-react';
-import { calculateCylinderNewtoneLiquid } from "../../services/two-phase-skin"
+import { calculateCylinderNotLinearLiquid } from "../../services/two-phase-skin"
 
-export default class PracticeProgramm extends React.Component {
+export default class PlateLinear extends React.Component {
     state = {
         inner_skin: false,
         rLength: 1,
         δ1: 1,
         δ2: 1,
-        p1: 997,
-        p2: 1.205,
-        Re1: 1.2,
-        Re2: 1.4,
+        p1: 1,
+        p2: 1,
+        Re1: 1,
+        Re2: 1,
         Fr: 1,
         Ge: 0
     }
@@ -33,7 +33,7 @@ export default class PracticeProgramm extends React.Component {
     }
     calculateChart = () => {
         const { inner_skin, rLength, δ1, δ2, p1, p2, Re1, Re2, Fr, Ge } = this.state
-        const calculateInfo = calculateCylinderNewtoneLiquid(inner_skin, rLength, δ1, δ2, p1, p2, Re1, Re2, Fr, Ge)
+        const calculateInfo = calculateCylinderNotLinearLiquid(inner_skin, rLength, δ1, δ2, p1, p2, Re1, Re2, Fr, Ge)
         console.log(calculateInfo.speedArray)
         this.setState({
             maxSpeed: calculateInfo.Wmax,
