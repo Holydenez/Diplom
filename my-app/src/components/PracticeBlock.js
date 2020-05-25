@@ -25,15 +25,6 @@ export default class PracticeBlock extends React.Component {
         }
     }
     render() {
-        let style = {
-            backgroundImage: `url(${this.props.image})`,
-            backgroundPosition: 'center',
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat'
-        };
         return (
             <div className="Main-block">
                 <div className="Practice-inner">
