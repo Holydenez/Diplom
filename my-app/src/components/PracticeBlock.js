@@ -2,16 +2,11 @@ import React from 'react';
 import './Components.css';
 //assets
 import steelplate from '../assets/images/steelplate.jpg';
-import sheet from '../assets/images/sheet.jpg';
-import cylinder from '../assets/images/cylinder.jpg'
 import many_cylinders from '../assets/images/many-cylinders.jpg'
 //components
 import NavigationBlock from "./NavigationBlock"
-import PlateLinear from './practice-components/PlateLinear';
 import PlateNotLinear from './practice-components/PlateNotLinear'
-import CylinderLinear from './practice-components/CylinderLinear'
-import CylinderNotLinear_v1 from './practice-components/CylinderNotLinear_v1'
-import CylinderNotLinear_v2 from './practice-components/CylinderNotLinear_v2'
+import CylinderNotLinear from './practice-components/CylinderNotLinear'
 
 export default class PracticeBlock extends React.Component {
     state = {
@@ -19,6 +14,15 @@ export default class PracticeBlock extends React.Component {
     }
     navigatePracticeTo = (navigationaPath) => {
         this.setState({ navigationPracticeRoute: navigationaPath ? navigationaPath : "home" })
+    }
+    practiceForm = () => {
+        const { navigationPracticeRoute } = this.state;
+        switch (navigationPracticeRoute) {
+            case 'sheet':
+                return <PlateNotLinear navigateTo={this.navigatePracticeTo} />
+            default:
+                return <CylinderNotLinear navigateTo={this.navigatePracticeTo} />
+        }
     }
     render() {
         let style = {
@@ -45,51 +49,19 @@ export default class PracticeBlock extends React.Component {
                         <div className="Practice-navigation">
                             <NavigationBlock
                                 navigateTo={this.navigatePracticeTo}
-                                image={sheet}
-                                navigateRoute="sheet"
-                                title={("Течія двошарової плівки лінійної рідини по поверхні пластини").toUpperCase()} />
-                            <NavigationBlock
-                                navigateTo={this.navigatePracticeTo}
                                 image={steelplate}
-                                navigateRoute="sheet_v2"
+                                navigateRoute="sheet"
                                 title={("Течія двошарової плівки нелінійно-в’язкої рідини по поверхні пластини").toUpperCase()} />
                             <NavigationBlock
                                 navigateTo={this.navigatePracticeTo}
-                                image={cylinder}
+                                image={many_cylinders}
                                 navigateRoute="cylinder"
-                                title={("Течія двошарової плівки лінійної рідини по поверхні циліндра").toUpperCase()} />
-                            <NavigationBlock
-                                navigateTo={this.navigatePracticeTo}
-                                image={many_cylinders}
-                                navigateRoute="cylinder_v2"
-                                title={("Течія двошарової плівки нелінійно-в’язкої рідини по поверхні циліндра (перший спосіб розв'язку)").toUpperCase()} />
-                            <NavigationBlock
-                                navigateTo={this.navigatePracticeTo}
-                                image={many_cylinders}
-                                navigateRoute="cylinder_v3"
-                                title={("Течія двошарової плівки нелінійно-в’язкої рідини по поверхні циліндра (другий спосіб розв'язку)").toUpperCase()} />
+                                title={("Течія двошарової плівки нелінійно-в’язкої рідини по поверхні циліндра").toUpperCase()} />
                         </div>
                         :
-                        this.state.navigationPracticeRoute === "sheet" ?
-                            <div className="Practice-programm">
-                                <PlateLinear navigateTo={this.navigatePracticeTo} />
-                            </div>
-                            :
-                            this.state.navigationPracticeRoute === "sheet_v2" ?
-                                <div className="Practice-programm">
-                                    <PlateNotLinear navigateTo={this.navigatePracticeTo} />
-                                </div>
-                                : this.state.navigationPracticeRoute === "cylinder" ?
-                                    <div className="Practice-programm">
-                                        <CylinderLinear navigateTo={this.navigatePracticeTo} />
-                                    </div>
-                                    : this.state.navigationPracticeRoute === "cylinder_v2" ?
-                                        <div className="Practice-programm">
-                                            <CylinderNotLinear_v1 navigateTo={this.navigatePracticeTo} />
-                                        </div>
-                                        : <div className="Practice-programm">
-                                            <CylinderNotLinear_v2 navigateTo={this.navigatePracticeTo} />
-                                        </div>
+                        <div className="Practice-programm">
+                            {this.practiceForm()}
+                        </div>
                     }
                 </div>
             </div>
