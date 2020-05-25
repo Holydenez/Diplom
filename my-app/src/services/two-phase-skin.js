@@ -1,25 +1,35 @@
 import { integrate } from "./integration"
 
-export function calculatePlateNotLinearLiquid(δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge) {
-    const yLength = δ1 + δ2
-    let W1, W2, W_1, W_2, W_3, W_4, W_5, ReFr1, ReFr2;
-    ReFr1 = Math.pow((Re1 / Fr), (1 / n1))
-    ReFr2 = Math.pow((Re2 / Fr), (1 / n2))
-    let speedArray = []
-    for (let y = 0; y < Number(yLength) + 1; y = y + 0.1) {
-        W_1 = Math.pow((1 + (p2 * δ2 / δ1 * p1) * (1 + Ge)), ((n1 + 1) / n1))
-        W_2 = Math.pow((1 + (p2 * δ2 / δ1 * p1) * (1 + Ge) - y), ((n1 + 1) / n1))
-        W_3 = Math.pow(((p2 * δ2 / δ1 * p1) * (1 + Ge)), ((n1 + 1) / n1))
-        W_4 = Math.pow(((δ2 / δ1) * (1 + Ge)), ((n2 + 1) / n2))
-        W_5 = Math.pow((1 + ((δ2 / δ1) * (1 + Ge) - y)), ((n2 + 1) / n2))
-        W1 = ReFr1 * (n1 / (n1 + 1)) * (W_1 - W_2)
-        W2 = ReFr1 * (n1 / (n1 + 1)) * (W_1 - W_3) + ReFr2 * (n2 / (n2 + 1)) * (W_4 - W_5)
-        speedArray.push({ y, W1: parseFloat(W1) / Math.pow(10, 6), W2: parseFloat(W2) / Math.pow(10, 6) })
+export function calculatePlateNotLinearLiquid(r1, r2, p1, p2, Re1, Re2, Fr, n2, n1, Ge) {
+    let r0 = 0.01;
+    const speedArray = [];
+    // r2 - радиус второго слоя, r1 - радиус первого слоя
+    for (let r = r0; r < (r1 + r2); r = r + 0.1) {
+        //стандартные константы
+        const Re1_Fr = Re1 / Fr;
+        const Re2_Fr = Re2 / Fr;
+        const _n1 = 1 / n1;
+        const _n2 = 1 / n2;
+        const _n1_n1_plus_one = n1 / (n1 + 1);
+        const _n2_n2_plus_one = n2 / (n2 + 1);
+        const _n1_plus_one_n1 = (n1 + 1) / n1;
+        const _n2_plus_one_n2 = (n2 + 1) / n2;
+        const p2_p1_and_r2_r1 = (p2 / p1) * (r2 / r1);
+        const Re1_Fr_in_n = Math.pow(Re1_Fr, _n1)
+        const Re2_Fr_in_n = Math.pow(Re2_Fr, _n2)
+        const Y = r;
+        //вычисления для скорости первой пленки
+        const U1_first_part = 1 + p2_p1_and_r2_r1 * (1 + Ge)
+        const U1_second_part = 1 + p2_p1_and_r2_r1 * (1 + Ge) - Y;
+        const U1 = Re1_Fr_in_n * _n1_n1_plus_one * (Math.pow(U1_first_part, _n1_plus_one_n1) - Math.pow(U1_second_part, _n1_plus_one_n1))
+        //вычисления для скорости второй пленки
+        const U2_second_part = p2_p1_and_r2_r1 * (1 + Ge)
+        const U2_part_three = (r2 / r1) * (1 + Ge);
+        const U2_part_four = Math.abs(1 + U2_part_three - Y);
+        const U2 = Re1_Fr_in_n * _n1_n1_plus_one * (Math.pow(U1_first_part, _n1_plus_one_n1) - Math.pow(U2_second_part, _n1_plus_one_n1)) + Re2_Fr_in_n * _n2_n2_plus_one * (Math.pow(U2_part_three, _n2_plus_one_n2) - Math.pow(U2_part_four, _n2_plus_one_n2))
+        speedArray.push({ y: r, W1: parseFloat(U1), W2: parseFloat(U2) })
     }
-    let calculatedInfo = {
-        speedArray
-    }
-    return calculatedInfo
+    return { speedArray }
 }
 
 export function calculateCylinderNotLinearLiquid(r1, r2, n1, n2, p1, p2, Re1, Re2, Fr, Ge) {

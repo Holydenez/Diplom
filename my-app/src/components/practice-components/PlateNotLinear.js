@@ -30,7 +30,7 @@ export default class PlateLinear extends React.Component {
     }
     calculateChart = () => {
         const { δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge } = this.state
-        const calculateInfo = calculatePlateNotLinearLiquid(δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge)
+        const calculateInfo = calculatePlateNotLinearLiquid_V2(δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge)
         console.log(calculateInfo.speedArray)
         this.setState({
             maxSpeed: calculateInfo.Wmax,
