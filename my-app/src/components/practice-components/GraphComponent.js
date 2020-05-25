@@ -5,17 +5,22 @@ import MaterialIcon from 'material-icons-react';
 import { calculatePlateNotLinearLiquid, calculateCylinderNotLinearLiquid } from "../../services/two-phase-skin"
 
 export default class GraphComponent extends React.Component {
-    state = {
-        δ1: 1,
-        δ2: 1,
-        p1: 997,
-        p2: 1.205,
-        Re1: 1.2,
-        Re2: 1.4,
-        Fr: 1,
-        n2: 1,
-        n1: 1,
-        Ge: 0
+    constructor(props) {
+        super(props);
+        const { navigationPracticeRoute } = props;
+        const sheetSelected = navigationPracticeRoute === "sheet";
+        this.state = {
+            δ1: 1,
+            δ2: sheetSelected ? 1 : 3,
+            p1: 997,
+            p2: 1.205,
+            Re1: 1.2,
+            Re2: 1.4,
+            Fr: 1,
+            n2: 1,
+            n1: 1,
+            Ge: sheetSelected ? -0.5 : 0
+        }
     }
     componentDidMount = () => {
         this.calculateChart()
@@ -34,6 +39,8 @@ export default class GraphComponent extends React.Component {
         const calculateInfo = navigationPracticeRoute === "sheet" ?
             calculatePlateNotLinearLiquid(δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge) :
             calculateCylinderNotLinearLiquid(δ1, δ2, n1, n2, p1, p2, Re1, Re2, Fr, Ge)
+
+        console.log(calculateInfo)
         this.setState({
             maxSpeed: calculateInfo.Wmax,
             averageSpeed: calculateInfo.Wsr,
