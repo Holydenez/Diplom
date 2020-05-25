@@ -1,10 +1,10 @@
 import React from 'react';
-import './PlateLinear.css';
+import './GraphComponent.css';
 import Chart from "chart.js"
 import MaterialIcon from 'material-icons-react';
-import { calculatePlateNotLinearLiquid } from "../../services/two-phase-skin"
+import { calculatePlateNotLinearLiquid, calculateCylinderNotLinearLiquid } from "../../services/two-phase-skin"
 
-export default class PlateLinear extends React.Component {
+export default class GraphComponent extends React.Component {
     state = {
         δ1: 1,
         δ2: 1,
@@ -30,8 +30,10 @@ export default class PlateLinear extends React.Component {
     }
     calculateChart = () => {
         const { δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge } = this.state
-        const calculateInfo = calculatePlateNotLinearLiquid(δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge)
-        console.log(calculateInfo.speedArray)
+        const { navigationPracticeRoute } = this.props;
+        const calculateInfo = navigationPracticeRoute === "sheet" ?
+            calculatePlateNotLinearLiquid(δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge) :
+            calculateCylinderNotLinearLiquid(δ1, δ2, n1, n2, p1, p2, Re1, Re2, Fr, Ge)
         this.setState({
             maxSpeed: calculateInfo.Wmax,
             averageSpeed: calculateInfo.Wsr,

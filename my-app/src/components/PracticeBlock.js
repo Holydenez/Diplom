@@ -5,8 +5,7 @@ import steelplate from '../assets/images/steelplate.jpg';
 import many_cylinders from '../assets/images/many-cylinders.jpg'
 //components
 import NavigationBlock from "./NavigationBlock"
-import PlateNotLinear from './practice-components/PlateNotLinear'
-import CylinderNotLinear from './practice-components/CylinderNotLinear'
+import GraphComponent from './practice-components/GraphComponent'
 
 export default class PracticeBlock extends React.Component {
     state = {
@@ -15,16 +14,8 @@ export default class PracticeBlock extends React.Component {
     navigatePracticeTo = (navigationaPath) => {
         this.setState({ navigationPracticeRoute: navigationaPath ? navigationaPath : "home" })
     }
-    practiceForm = () => {
-        const { navigationPracticeRoute } = this.state;
-        switch (navigationPracticeRoute) {
-            case 'sheet':
-                return <PlateNotLinear navigateTo={this.navigatePracticeTo} />
-            default:
-                return <CylinderNotLinear navigateTo={this.navigatePracticeTo} />
-        }
-    }
     render() {
+        const { navigationPracticeRoute } = this.state;
         return (
             <div className="Main-block">
                 <div className="Practice-inner">
@@ -51,7 +42,7 @@ export default class PracticeBlock extends React.Component {
                         </div>
                         :
                         <div className="Practice-programm">
-                            {this.practiceForm()}
+                            <GraphComponent navigateTo={this.navigatePracticeTo} navigationPracticeRoute={navigationPracticeRoute} />
                         </div>
                     }
                 </div>
