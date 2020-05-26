@@ -8,10 +8,10 @@ export default class GraphComponent extends React.Component {
     constructor(props) {
         super(props);
         const { navigationPracticeRoute } = props;
-        const sheetSelected = navigationPracticeRoute === "sheet";
+        // const sheetSelected = navigationPracticeRoute === "sheet";
         this.state = {
             δ1: 1,
-            δ2: sheetSelected ? 1 : 3,
+            δ2: 1,
             p1: 997,
             p2: 1.205,
             Re1: 1.2,
@@ -81,17 +81,18 @@ export default class GraphComponent extends React.Component {
     }
 
     render() {
+        const { navigationPracticeRoute } = this.props;
+        const sheetSelected = navigationPracticeRoute === "sheet";
         const inputValues = [
             {
 
-                label: "δ1 (товщина рідини першої плівки):",
+                label: sheetSelected ? "δ1 (товщина рідини першої плівки):" : "r1 (радіус в циліндричній системі координат для першої плівки):",
                 name: "δ1",
                 type: "number",
                 value: this.state.δ1
             },
             {
-
-                label: "δ2 (товщина рідини другої плівки):",
+                label: sheetSelected ? "δ2 (товщина рідини другої плівки):" : "r1 (радіус в циліндричній системі координат для другої плівки):",
                 name: "δ2",
                 type: "number",
                 value: this.state.δ2

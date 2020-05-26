@@ -42,7 +42,7 @@ export function calculateCylinderNotLinearLiquid(r1, r2, n1, n2, p1, p2, Re1, Re
     const n2_coef = 1 / n2;
     const R1_in_2 = Math.pow(R1, 2);
     const R2_in_2 = Math.pow(R2, 2);
-    const R_special_in_2 = R2_in_2 + 2 * (Ge + 1) * δ2 * R2;
+    const R_special_in_2 = R2_in_2 + 2 * Ge * δ2 * R2;
     const Re1_Fr = Re1 / Fr;
     const Re2_Fr = Re2 / Fr;
     //разбиение формул на подформулы
@@ -55,7 +55,6 @@ export function calculateCylinderNotLinearLiquid(r1, r2, n1, n2, p1, p2, Re1, Re
         return Math.pow((-R_tick + (B1 / R_tick)), n1_coef)
     }
     function U2_under_integrate(R_tick) {
-
         return Math.pow((-R_tick + (B2 / R_tick)), n2_coef)
     }
     const speedArray = [];
@@ -64,8 +63,8 @@ export function calculateCylinderNotLinearLiquid(r1, r2, n1, n2, p1, p2, Re1, Re
         // вспомогательные константы
         const R = r / r0;
         //вычисления
-        const U1 = A1 * integrate(U1_under_integrate, 1, R);
-        const U2 = A2 * integrate(U2_under_integrate, R1, R) + A1 * integrate(U1_under_integrate, 1, R1);
+        const U1 = A1 * integrate(U1_under_integrate, r0, R);
+        const U2 = A2 * integrate(U2_under_integrate, R1, R) + A1 * integrate(U1_under_integrate, r0, R1);
         speedArray.push({ y: r, W1: parseFloat(U1), W2: parseFloat(U2) })
     }
     return { speedArray };
