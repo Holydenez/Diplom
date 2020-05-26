@@ -42,7 +42,7 @@ export function calculateCylinderNotLinearLiquid(r1, r2, n1, n2, p1, p2, Re1, Re
     const n2_coef = 1 / n2;
     const R1_in_2 = Math.pow(R1, 2);
     const R2_in_2 = Math.pow(R2, 2);
-    const R_special_in_2 = R2_in_2 + 2 * Ge * δ2 * R2;
+    const R_special_in_2 = R2_in_2 + 2 * (Ge + 1) * δ2 * R2;
     const Re1_Fr = Re1 / Fr;
     const Re2_Fr = Re2 / Fr;
     //разбиение формул на подформулы

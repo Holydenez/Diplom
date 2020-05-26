@@ -19,7 +19,7 @@ export default class GraphComponent extends React.Component {
             Fr: 1,
             n2: 1,
             n1: 1,
-            Ge: sheetSelected ? 1 : 0
+            Ge: 0
         }
     }
     componentDidMount = () => {
