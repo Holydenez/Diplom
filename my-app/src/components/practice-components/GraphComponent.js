@@ -11,7 +11,7 @@ export default class GraphComponent extends React.Component {
         // const sheetSelected = navigationPracticeRoute === "sheet";
         this.state = {
             δ1: 1,
-            δ2: 1,
+            δ2: 2,
             p1: 997,
             p2: 1.205,
             Re1: 1.2,
@@ -63,7 +63,8 @@ export default class GraphComponent extends React.Component {
                 datasets: [{
                     label: 'Профіль швидкості плівки',
                     data: wArray,
-                    borderColor: 'rgba(255, 99, 132, 0.8)',
+                    borderColor: 'rgba(255, 99, 132, 0.9)',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
                     fill: false,
                     borderWidth: 1
                 }]
