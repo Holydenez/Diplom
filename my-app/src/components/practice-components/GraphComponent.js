@@ -19,7 +19,7 @@ export default class GraphComponent extends React.Component {
             Fr: 1,
             n2: 1,
             n1: 1,
-            Ge: sheetSelected ? -0.5 : 0
+            Ge: sheetSelected ? 1 : 0
         }
     }
     componentDidMount = () => {
@@ -56,7 +56,7 @@ export default class GraphComponent extends React.Component {
             }
             indexArray.push(speedElement.y.toFixed(1))
         });
-        var myLineChart = new Chart(this.refs.myChart, {
+        new Chart(this.refs.myChart, {
             type: 'line',
             data: {
                 labels: indexArray,
