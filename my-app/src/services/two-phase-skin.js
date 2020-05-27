@@ -1,12 +1,12 @@
 import { integrate } from "./integration"
 
-export function calculatePlateNotLinearLiquid(r1, r2, p1, p2, Re1, Re2, Fr, n2, n1, Ge) {
+export function calculatePlateNotLinearLiquid(r1, r2, p1, p2, Re1, Re2, Fr, _n2, _n1, Ge) {
     //стандартные константы
     let r0 = 0.01;
     const Re1_Fr = Re1 / Fr;
     const Re2_Fr = Re2 / Fr;
-    const _n1 = 1 / n1;
-    const _n2 = 1 / n2;
+    const n1 = 1 / _n1;
+    const n2 = 1 / _n2;
     const _n1_n1_plus_one = n1 / (n1 + 1);
     const _n2_n2_plus_one = n2 / (n2 + 1);
     const _n1_plus_one_n1 = (n1 + 1) / n1;
@@ -32,14 +32,12 @@ export function calculatePlateNotLinearLiquid(r1, r2, p1, p2, Re1, Re2, Fr, n2, 
     return { speedArray }
 }
 
-export function calculateCylinderNotLinearLiquid(r1, r2, n1, n2, p1, p2, Re1, Re2, Fr, Ge) {
+export function calculateCylinderNotLinearLiquid(r1, r2, n1_coef, n2_coef, p1, p2, Re1, Re2, Fr, Ge) {
     let r0 = 0.5;
     // стандартные константы
     const R1 = r1 / r0;
     const R2 = r2 / r0;
     const δ2 = (r2 - r1) / r0;
-    const n1_coef = 1 / n1;
-    const n2_coef = 1 / n2;
     const R1_in_2 = Math.pow(R1, 2);
     const R2_in_2 = Math.pow(R2, 2);
     const R_special_in_2 = R2_in_2 + 2 * Ge * δ2 * R2;

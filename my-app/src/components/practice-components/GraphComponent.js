@@ -121,7 +121,7 @@ export default class GraphComponent extends React.Component {
             },
             {
 
-                label: "Re2 (узагальнене число Рейльнодса для другої  плівки):",
+                label: "Re2 (узагальнене число Рейльнодса для другої плівки):",
                 name: "Re2",
                 type: "number",
                 value: this.state.Re1
@@ -135,14 +135,14 @@ export default class GraphComponent extends React.Component {
             },
             {
 
-                label: "n1 (фізична константа для нелінійно-в’язких плівок):",
+                label: "1/n1 (фізична константа для плівок нелінійно-в’язких рідин ):",
                 name: "n1",
                 type: "number",
                 value: this.state.n1
             },
             {
 
-                label: "n2 (фізична константа для нелінійно-в’язких плівок):",
+                label: "1/n2 (фізична константа для плівок нелінійно-в’язких рідин):",
                 name: "n2",
                 type: "number",
                 value: this.state.n2
