@@ -7,11 +7,9 @@ import { calculatePlateNotLinearLiquid, calculateCylinderNotLinearLiquid } from 
 export default class GraphComponent extends React.Component {
     constructor(props) {
         super(props);
-        const { navigationPracticeRoute } = props;
-        // const sheetSelected = navigationPracticeRoute === "sheet";
         this.state = {
-            δ1: 1,
-            δ2: 2,
+            δ1: 2,
+            δ2: 3,
             p1: 997,
             p2: 1.205,
             Re1: 1.2,
@@ -36,7 +34,8 @@ export default class GraphComponent extends React.Component {
     calculateChart = () => {
         const { δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge } = this.state
         const { navigationPracticeRoute } = this.props;
-        const calculateInfo = navigationPracticeRoute === "sheet" ?
+        const sheetSelected = navigationPracticeRoute === "sheet";
+        const calculateInfo = sheetSelected ?
             calculatePlateNotLinearLiquid(δ1, δ2, p1, p2, Re1, Re2, Fr, n2, n1, Ge) :
             calculateCylinderNotLinearLiquid(δ1, δ2, n1, n2, p1, p2, Re1, Re2, Fr, Ge)
 
@@ -54,7 +53,7 @@ export default class GraphComponent extends React.Component {
             else if (speedElement.y.toFixed(1) > δ1) {
                 wArray.push(speedElement.W2)
             }
-            indexArray.push(speedElement.y.toFixed(1))
+            indexArray.push(sheetSelected ? speedElement.y.toFixed(1) : speedElement.y.toFixed(1) + 0.5)
         });
         new Chart(this.refs.myChart, {
             type: 'line',

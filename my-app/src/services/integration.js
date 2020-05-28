@@ -16,9 +16,3 @@ export function integrate(equation, a, b, stepsize) {
   }
   return area;
 }
-
-// use the function in JavaScript
-// function f (x) {
-//   return math.pow(x, 0.5)
-// }
-// console.log(math.integrate(f, 0, 1)) // outputs 0.6667254718034714
